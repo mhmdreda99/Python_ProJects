@@ -1,4 +1,4 @@
-##min_max _Algorihm game
+##min_max _Algorihm game 
 board = [' ' for x in range(10)]
 
 def insertLetter(letter, pos):
