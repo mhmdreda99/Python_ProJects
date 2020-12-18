@@ -1,12 +1,47 @@
-##min_max _Algorihm game 
-board = [' ' for x in range(10)]
+#########################################################################
+#file name :min_max_algorithm.py
+#Description:
+'''Tic-tac-toe (XO)
+Tic-tac-toe is a simple game, but it can be used to illustrate the same minimax algorithm
+that can be applied in advanced strategy games like Connect Four, checkers,
+and chess. We will build a tic-tac-toe AI that plays perfectly using minimax.
+'''
+# Version     : 0.1  
+# Author : Mohamed Reda
+#
+# 
+##########################################################################  
 
+########################  BOARD POSITIONS ################################
+#                        |  1   |  2   |  3 |                          
+#                       |______|______|_____|                         
+#                      |  4   |  5   |   6 |
+#                     |______|______|_____|                                   
+#                     |  7  |  8   |    9  |                                   
+#                    |______|______|______|                                     
+## ########################################################################
+##########################################################################
+#Description:this function responsable for check if the board postions empy or not 
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################      
 def insertLetter(letter, pos):
     board[pos] = letter
-
+#########################################################################
+#Description:this function responsable for check if the board postions empy or not 
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################    
 def spaceIsFree(pos):
     return board[pos] == ' '
-
+#########################################################################
+#Description:this function responsable for check if the board postions empy or not 
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################    
 def printBoard(board):
     print('   |   |')
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
@@ -19,14 +54,24 @@ def printBoard(board):
     print('   |   |')
     print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('   |   |')
-    
+ #########################################################################
+#Description:this function responsable for check if the board postions empy or not 
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################       
 def isWinner(bo, le):
-    return (bo[7] == le and bo[8] == le and bo[9] == le) or (bo[4] == le and bo[5] == le and bo[6] == le) or(bo[1] == le and bo[2] == le and bo[3] == le) or(bo[1] == le and bo[4] == le and bo[7] == le) or(bo[2] == le and bo[5] == le and bo[8] == le) or(bo[3] == le and bo[6] == le and bo[9] == le) or(bo[1] == le and bo[5] == le and bo[9] == le) or(bo[3] == le and bo[5] == le and bo[7] == le)
-
+    return (bo[7] == le and bo[8] == le and bo[9] == le) or (bo[4] == le and bo[5] == le and bo[6] == le) or (bo[1] == le and bo[2] == le and bo[3] == le) or(bo[1] == le and bo[4] == le and bo[7] == le) or(bo[2] == le and bo[5] == le and bo[8] == le) or(bo[3] == le and bo[6] == le and bo[9] == le) or(bo[1] == le and bo[5] == le and bo[9] == le) or(bo[3] == le and bo[5] == le and bo[7] == le)
+#########################################################################
+#Description:this function responsable for check if the board postions empy or not 
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################    
 def playerMove():
     run = True
     while run:
-        move = input('Select a position to place an \'X\' (1-9): ')
+        move = input('Select a position to place an \'X\'(1-9): ')
         try:
             move = int(move)
             if move > 0 and move < 10:
@@ -36,14 +81,20 @@ def playerMove():
                 else:
                     print('Sorry, this space is occupied!')
             else:
-                print('Type a number within the range!')
+                print('Type a number within the range(1:9)!')
         except:
-            print('Type a number!')
-            
+            print('!Are u Mad! Please Type a number!')
+#########################################################################
+#Description:this function responsable for check if the board postions 
+#            empty or not .
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################               
 
 def compMove():
     possibleMoves = [x for x, letter in enumerate(board) if letter == ' ' and x != 0]
-    move = 0
+    move = 0  #intial steate
 
     for let in ['O', 'X']:
         for i in possibleMoves:
@@ -75,14 +126,23 @@ def compMove():
         move = selectRandom(edgesOpen)
         
     return move
-
+#########################################################################
+#Description:this function responsable for check if the board postions empy or not 
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################    
 def selectRandom(li):
     import random
     ln = len(li)
     r = random.randrange(0,ln)
     return li[r]
-    
-
+#########################################################################
+#Description:this function responsable for check if the board postions empy or not 
+# INPUT:None
+# OUTPUT:retrun True if full False if Empty
+# 
+##########################################################################     
 def isBoardFull(board):
     if board.count(' ') > 1:
         return False
@@ -90,7 +150,7 @@ def isBoardFull(board):
         return True
 
 def main():
-    print('Welcome to Tic Tac Toe!')
+    print('Welcome to My (XO) GAME . ')
     printBoard(board)
 
     while not(isBoardFull(board)):
@@ -98,7 +158,7 @@ def main():
             playerMove()
             printBoard(board)
         else:
-            print('Sorry, O\'s won this time!')
+            print('GOOD LUCK, Computer (O\'s) won this time!')
             break
 
         if not(isWinner(board, 'X')):
@@ -110,7 +170,7 @@ def main():
                 print('Computer placed an \'O\' in position', move , ':')
                 printBoard(board)
         else:
-            print('X\'s won this time! Good Job!')
+            print('Congrats you won this time!\n** Good Job**!')
             break
 
     if isBoardFull(board):
@@ -120,7 +180,7 @@ while True:
     answer = input('Do you want to play again? (Y/N)')
     if answer.lower() == 'y' or answer.lower == 'yes':
         board = [' ' for x in range(10)]
-        print('-----------------------------------')
-        main()  # call main
+        print('-------------- New Game ---------------------')
+        main()  # call main again 
     else:
         break
